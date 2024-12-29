@@ -1,0 +1,85 @@
+
+
+
+<div class="container">
+  <h2>Registration Form</h2>
+  
+  <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+    <div class="first-name" >
+      <input type="text" formControlName="firstname"  placeholder="First Name" (focus)="onFocus('firstname')">
+     <div class="error-message">
+      <span *ngIf="reactiveForm.get('firstname')?.invalid && reactiveForm.get('firstname')?.touched">
+        ⚠ Your first name is required</span>
+     </div>
+    </div>
+    <div class="last-name">
+      <input type="text" formControlName="lastname"  placeholder="Last Name" (focus)="onFocus('lastname')">
+      <div class="error-message">
+        <span *ngIf=" reactiveForm.get('lastname')?.invalid && reactiveForm.get('lastname')?.touched">
+          ⚠ Your last name is required</span>
+       </div>
+    </div>
+    <div class="email">
+      <input type="email" formControlName="email" placeholder="Email Address" (focus)="onFocus('email')" (blur)="reactiveForm.get('email')?.markAsTouched()">
+      <div id="email-error-message" class="error-message">
+         <!--Required Error---->
+        <span *ngIf="reactiveForm.get('email')?.invalid && reactiveForm.get('email')?.hasError('required') && reactiveForm.get('email')?.touched">
+          ⚠ Your email address is required</span>
+           <!--Invalid Email Error---->
+        <span *ngIf="reactiveForm.get('email')?.hasError('email') && reactiveForm.get('email')?.touched">
+          ⚠ Invalid email address format</span>
+       </div>
+    </div>
+    <div class="username">
+      <input type="text" formControlName="username" placeholder="Username" (focus)="onFocus('username')">
+      <div class="error-message">
+        <span *ngIf="reactiveForm.get('username')?.invalid && reactiveForm.get('username')?.hasError('required') && reactiveForm.get('username')?.touched">
+          ⚠ Your username is required</span>
+        <span id="usernameMinCharacters" *ngIf="reactiveForm.get('username')?.hasError('minlength')">
+          ⚠ Username must have a minimum of 5 characters</span>
+       </div>
+    </div>
+    <div class="password">
+      <input type="password" formControlName="password" placeholder="Password" (focus)="onFocus('password')">
+      <div class="error-message">
+        <!--Required Error---->
+        <span *ngIf="reactiveForm.get('password')?.hasError('required') &&reactiveForm.get('password')?.touched">
+          ⚠ Your password is required</span>
+        <!--MinLength Error---->
+        <span id="passwordMinLength" *ngIf="!reactiveForm.get('password')?.hasError('required') && reactiveForm.get('password')?.hasError('minlength') && reactiveForm.get('password')?.touched">
+          ⚠ Password must be at least 6 characters</span>
+        <!--Pattern Error---->
+        <span id="passwordPattern" *ngIf="!reactiveForm.get('password')?.hasError('required') && !reactiveForm.get('password')?.hasError('minlength') && reactiveForm.get('password')?.hasError('pattern') && reactiveForm.get('password')?.touched">
+          ⚠ Password must contain an uppercase letter, a number, and a special character</span>
+       </div>
+    </div>
+    <div class="confirm-password">
+      <input type="password" formControlName="confirmPassword" placeholder="Confirm Password" (focus)="onFocus('confirmPassword')">
+      <div id="confirm-password-error-message" class="error-message">
+        <!--Confirm-Password Error---->
+        <span *ngIf="reactiveForm.get('confirmPassword')?.invalid && reactiveForm.get('confirmPassword')?.touched">
+          ⚠ Please re-enter your password</span>
+       </div>
+        <!--Password Match Error---->
+        <span id="passwordMatch" *ngIf="reactiveForm.hasError('passwordsMismatch') && !reactiveForm.get('confirmPassword')?.invalid  && reactiveForm.get('confirmPassword')?.touched">
+          ⚠ Passwords do not match</span>
+     </div>
+    
+  <div class="form-submit">
+  <button class="btn btn-dark" type="submit">Register</button>
+  
+  </div>
+  
+  </form>
+  
+  
+  <div *ngIf="registrationSuccess" class="success-banner">
+
+    Registration successful!
+  </div>
+  
+  </div>
+  
+  
+
+<router-outlet/>

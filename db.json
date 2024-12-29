@@ -1,0 +1,23 @@
+{
+  "users": [
+    {
+      "id": "fc3a",
+      "firstName": "ttt",
+      "lastName": "tt",
+      "emailAddress": "tt@rrr.com",
+      "username": "gugugu",
+      "password": "Hesoyam1!",
+      "confirmPassword": "Hesoyam1!"
+    },
+    {
+      "id": "81f3",
+      "firstName": "Krishjot",
+      "lastName": "Sarai",
+      "emailAddress": "krishjot8@yahoo.com",
+      "username": "krishjot8",
+      "password": "Apeescape4!",
+      "confirmPassword": "Apeescape4!"
+    }
+  ]
+}
+
